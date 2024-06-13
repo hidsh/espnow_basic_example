@@ -65,8 +65,10 @@ static void recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len)
 {
     static recv_packet_t recv_packet;
 
-    ESP_LOGI(TAG, "%d bytes incoming from " MACSTR, len, MAC2STR(mac_addr));
-    
+    ESP_LOGI(TAG, "%d bytes incoming from %02x:%02x:%02x:%02x:%02x:%02x", len,
+                mac_addr[0], mac_addr[1], mac_addr[2],
+                mac_addr[3], mac_addr[4], mac_addr[5]);
+
     if(len != sizeof(my_data_t))
     {
         ESP_LOGE(TAG, "Unexpected data length: %d != %u", len, sizeof(my_data_t));
